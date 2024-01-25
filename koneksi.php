@@ -1,4 +1,4 @@
 <?php
-$base_url = 'http://localhost/absen-geotag/';
+$base_url = 'https://smartkampung.com/absen-geotag/';
 $kon = mysqli_connect("localhost","root","","geotag");
 ?>
