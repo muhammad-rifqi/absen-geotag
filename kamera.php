@@ -1,6 +1,12 @@
 
 <?php
 session_start();
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+
 include"koneksi.php";
 $name = date("YmdHis");
 $id = session_id();
