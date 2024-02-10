@@ -24,6 +24,14 @@
                 <button onclick="absenMasuk()" class="btn btn-primary">Absen Masuk</button> 
                 <button onclick="absenKeluar()" class="btn btn-primary">Absen Keluar</button> 
             </p>
+            <p>
+                <button onclick="stopCam()" class="btn btn-primary">Matikan Camera & Microphone </button> 
+                <button onclick="startCam()" class="btn btn-primary">Nyalakan Camera & Microphone </button> 
+            </p>
+            <p>
+                <button onclick="frontCam()" class="btn btn-primary">Camera Depan </button> 
+                <button onclick="backCam()" class="btn btn-primary">Camera Belakang </button> 
+            </p>
         </div>
     </div>
 <div>
@@ -37,17 +45,32 @@
 
 <script type="text/javascript">
 var video = document.querySelector("#video-webcam");
+
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+function frontCam(){
+    stopCam();
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({ video: true }, handleVideo, videoError);
+        navigator.getUserMedia({ video: { facingMode: {exact : "user"} }}, handleVideo, videoError);
     }
+}
+
+function startCam(){
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({ video: { facingMode: "environment" }}, handleVideo, videoError);
+    }
+}
+
+function stopCam(stream){
+    video.srcObject.getTracks().forEach(track => track.stop())
+}
 
 function handleVideo(stream) {
     video.srcObject = stream;
 }
 
 function videoError(e) {
-    alert("Izinkan menggunakan webcam")
+    alert(e)
 }
 
 
